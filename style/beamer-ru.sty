@@ -1,0 +1,88 @@
+
+% use an ex­tended ver­sion of TeX
+\usepackage{etex}
+
+\usepackage[T1]{fontenc}
+
+% use unicode
+\usepackage{ucs}
+
+% utf8
+\usepackage[cp1251,utf8x]{inputenc}
+\usepackage[english,russian]{babel}
+
+% packages
+\usepackage{
+    listings,       % for listings
+    float,          % for figure and table positioning
+    multirow,       % for tables
+    tabularx,
+    caption,        % for caption redefinitions
+    subcaption,
+    amsmath,        % for equations 
+    amsfonts,
+    array,          % for tables and equations
+    amssymb,        % for math symbols
+    cite,           % for citation
+    enumerate,      % for lists
+    setspace,
+    mathtools,
+    pgfplots,       % for plots
+    tikz,
+    pgfplotstable,
+    ragged2e,       % for justification
+    etoolbox,
+    indentfirst     % for intendation
+}
+
+%
+% general settings
+%
+
+% declare picture captions
+\DeclareCaptionLabelFormat{PictureCaptionFormat}{Рисунок {#2}}
+\captionsetup[figure]{
+    labelformat=PictureCaptionFormat,
+    skip=0pt,
+    format=hang,
+    justification=raggedright,
+    labelsep=endash
+}
+
+% declare tables captions
+\DeclareCaptionLabelFormat{TableCaptionFormat}{Таблица {#2}}
+\captionsetup[table]{
+    labelformat=TableCaptionFormat,
+    skip=0pt,
+    format=hang,
+    justification=raggedright,
+    singlelinecheck=off,
+    labelsep=endash
+}
+
+% set placement of tables and pictures
+\floatplacement{figure}{H}
+\floatplacement{table}{H}
+
+% parens
+\newcommand{\parens}[1]{\left ({#1} \right )}
+
+% brackets
+\newcommand{\brackets}[1]{\left [{#1} \right ]}
+
+% bold vector
+\newcommand{\boldvec}[1]{\vec{ \mathbf{#1} }}
+
+% partial derivative
+\newcommand\parderf[2]{\frac{\partial #1}{\partial #2}}
+
+\newcommand\parders[2]{\frac{\partial^2 #1}{\partial #2^2}}
+
+% gradient
+\DeclareMathOperator{\gradient}{grad}
+
+% divergence
+\DeclareMathOperator{\divergence}{div}
+
+% curl
+\DeclareMathOperator{\curl}{rot}

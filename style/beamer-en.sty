@@ -1,0 +1,89 @@
+
+% use an ex­tended ver­sion of TeX
+\usepackage{etex}
+
+\usepackage[T1]{fontenc}
+
+% use unicode
+\usepackage{ucs}
+
+% utf8
+\usepackage[utf8x]{inputenc}
+\usepackage[english]{babel}
+
+% packages
+\usepackage{
+    lipsum,         % to create dummy text
+    listings,       % for listings
+    float,          % for figure and table positioning
+    multirow,       % for tables
+    tabularx,
+    caption,        % for caption redefinitions
+    subcaption,
+    amsmath,        % for equations 
+    amsfonts,
+    array,          % for tables and equations
+    amssymb,        % for math symbols
+    cite,           % for citation
+    enumerate,      % for lists
+    setspace,
+    mathtools,
+    pgfplots,       % for plots
+    tikz,
+    pgfplotstable,
+    ragged2e,       % for justification
+    etoolbox,
+    indentfirst     % for intendation
+}
+
+%
+% general settings
+%
+
+% declare picture captions as (Picture 1 - <caption>)
+\DeclareCaptionLabelFormat{PictureCaptionFormat}{Picture {#2}}
+\captionsetup[figure]{
+    labelformat=PictureCaptionFormat,
+    skip=0pt,
+    format=hang,
+    justification=raggedright,
+    labelsep=endash
+}
+
+% declare tables captions as (Table 1 - <caption>)
+\DeclareCaptionLabelFormat{TableCaptionFormat}{Table {#2}}
+\captionsetup[table]{
+    labelformat=TableCaptionFormat,
+    skip=0pt,
+    format=hang,
+    justification=raggedright,
+    singlelinecheck=off,
+    labelsep=endash
+}
+
+% set placement of tables and pictures
+\floatplacement{figure}{H}
+\floatplacement{table}{H}
+
+% parens
+\newcommand{\parens}[1]{\left ({#1} \right )}
+
+% brackets
+\newcommand{\brackets}[1]{\left [{#1} \right ]}
+
+% bold vector
+\newcommand{\boldvec}[1]{\vec{ \mathbf{#1} }}
+
+% partial derivative
+\newcommand\parderf[2]{\frac{\partial #1}{\partial #2}}
+
+\newcommand\parders[2]{\frac{\partial^2 #1}{\partial #2^2}}
+
+% gradient
+\DeclareMathOperator{\gradient}{\nabla}
+
+% divergence
+\DeclareMathOperator{\divergence}{\nabla \cdot}
+
+% curl
+\DeclareMathOperator{\curl}{\nabla \times}
