@@ -1,0 +1,37 @@
+
+\documentclass[a4paper,14pt]{extreport}
+
+\usepackage{style/report-ru}
+
+\begin{document}
+
+    \setlength\abovedisplayskip{\baselineskip}
+    \setlength\belowdisplayskip{\baselineskip}
+    \setlength\abovedisplayshortskip{\baselineskip}
+    \setlength\belowdisplayshortskip{\baselineskip}
+
+	% annotation
+	\input{content/annotation}
+
+	% table of contents
+	\tableofcontents
+
+	% introduction
+	\input{content/introduction}
+	
+	% chapter 1
+	\input{content/chapter-01}
+	
+	% chapter 2
+	\input{content/chapter-02}
+
+	% conclusion
+	\input{content/conclusion}
+
+    % references
+    \input{content/references}
+
+	% appendix
+	\input{content/appendix}
+
+\end{document}

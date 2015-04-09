@@ -1,0 +1,118 @@
+
+\chapter{Вторая глава}
+	
+	\section{Первый раздел}
+
+    \lipsum[1-2]
+		
+	\begin{figure}
+		\centering
+		\begin{tikzpicture}
+		\begin{axis}[
+			width=0.9\textwidth,
+			axis lines = left,
+			legend cell align=left,
+			legend style={at={(1,0.5)},anchor=east},
+			xtick=data,
+			xlabel={$x$},
+			ylabel={$f(x)$}
+		]
+			\addplot+[color=black,mark=triangle*,mark options={black},mark size=3] table[meta=num]
+					 {data/d01-x.dat}; 
+			\addplot+[color=black,mark=*        ,mark options={black},mark size=3] table[meta=num]
+					 {data/d02-xx.dat}; 
+			\addplot+[color=black,mark=square*  ,mark options={black},mark size=3] table[meta=num]
+					 {data/d03-sin.dat};
+		\legend{
+			{$f(x) = x$},
+			{$f(x) = x^2$},
+			{$f(x) = \sin(x)$}
+		}
+		
+		\end{axis}
+		\end{tikzpicture}
+		\caption{Скорость матрично-векторных умножений от количества векторов}
+		\label{img:example_plot}
+	\end{figure}
+	
+	\lipsum[1-1]
+	
+    \begin{table}
+		\centering
+		\caption{Название таблицы}
+		\label{tab:example_table}
+		\begin{tabular}{| p{2.7cm} 
+						| >{\raggedleft\arraybackslash}p{1.7cm} 
+						| >{\raggedleft\arraybackslash}p{1.9cm} 
+						| >{\raggedleft\arraybackslash}p{1.7cm} 
+						| >{\raggedleft\arraybackslash}p{1.9cm} 
+						| >{\raggedleft\arraybackslash}p{1.7cm} 
+						| >{\raggedleft\arraybackslash}p{1.9cm} |}
+			\hline
+			\multirow{2}{2.7cm}
+			{Частота, Гц}       & \multicolumn{2}{>
+			                     {\centering
+			                     \arraybackslash}
+			                     m{3.6cm}|}
+								 {Результат 1}         & \multicolumn{2}{>
+								                         {\centering
+								                          \arraybackslash}
+								                         m{3.6cm}|}
+														 {Результат 2}       & \multicolumn{2}{>
+														                       {\centering
+														                        \arraybackslash}
+														                       m{3.6cm}|}
+															   				   {Результат 3} 	  \\
+			\cline{2-7}
+					 	 	     & Кол-во     & Время,
+					 	 	                    с      & Кол-во     & Время,
+					 	 	                                          с      & Кол-во     & Время,
+					 	 	                                                                с	  \\
+			\hline
+			500                  & 102        & 10.1   & 102        & 4.2    & 102 		  & 1.5   \\
+			\hline
+			250                  & 102        & 10.2   & 102        & 3.9    & 102 	      & 1.5   \\
+			\hline
+			100                  & 113        & 11.2   & 113        & 4.5    & 113        & 1.6   \\
+			\hline
+			50                   & 151        & 15.0   & 151        & 5.8    & 151 	      & 2.0   \\
+			\hline
+			25                   & 180        & 17.7   & 180        & 7.3    & 180 	      & 2.6   \\
+			\hline
+			12.5                 & 290        & 28.5   & 290        & 11.1   & 289 	      & 3.8   \\
+			\hline
+			6.25                 & 410        & 40.3   & 410        & 15.6   & 409 	      & 5.2   \\
+			\hline
+			3.13                 & 644        & 63.2   & 681        & 25.6   & 646 	      & 8.1   \\
+			\hline
+			1.56                 & 1163       & 114.0  & 1253       & 47.0   & 1160	      & 14.2  \\
+			\hline
+			0.78                 & 2045       & 200.4  & 2047       & 76.6   & 2034	      & 24.9  \\
+			\hline
+			0.39                 & 3499       & 342.0  & 3508       & 132.4  & 3473	      & 42.2  \\
+			\hline
+			$1.95 \cdot 10^{-1}$ & 4303       & 420.8  & 4341       & 164.3  & 4275	      & 51.9  \\
+			\hline
+			$9.77 \cdot 10^{-2}$ & 5356       & 523.3  & 5398       & 204.1  & 5303	      & 64.2  \\
+			\hline
+			$4.88 \cdot 10^{-2}$ & 5707       & 557.7  & 5782       & 218.6  & 5648	      & 68.4  \\
+			\hline
+			$2.44 \cdot 10^{-2}$ & 5476       & 535.2  & 5504       & 208.8  & 5397	      & 65.6  \\
+			\hline
+			$1.22 \cdot 10^{-2}$ & 6422       & 627.4  & 6506       & 246.9  & 6328	      & 77.0  \\
+			\hline
+			$6.10 \cdot 10^{-3}$ & 6053       & 591.4  & 6169       & 234.0  & 5998	      & 72.7  \\
+			\hline
+			$3.05 \cdot 10^{-3}$ & 6195       & 605.2  & 6303       & 238.7  & 6111	      & 74.3  \\
+			\hline
+			$1.53 \cdot 10^{-3}$ & 5367       & 524.8  & 5482       & 209.6  & 5232	      & 64.0  \\
+			\hline
+			$7.63 \cdot 10^{-4}$ & 6437       & 628.8  & 6547       & 250.0  & 6448	      & 78.8  \\
+			\hline
+			$3.81 \cdot 10^{-4}$ & 6416       & 627.1  & 6523       & 249.0  & 6377	      & 77.7  \\
+			\hline
+			\hline
+			Итого			     & 66431      & 6495.4 & 67392      & 2559.0 & 65776      & 804.3 \\
+			\hline
+		\end{tabular}
+    \end{table}

@@ -1,0 +1,234 @@
+
+% Для unicode
+\usepackage{ucs}
+
+% cp1251 для листинга и utf8 для остального
+\usepackage[utf8x]{inputenc}
+\usepackage[english,russian]{babel}
+
+% Для вставки картинок
+\usepackage[pdftex]{graphicx}
+
+%\usepackage[T2A]{fontenc}
+
+% Цвета (для листингов)
+\usepackage[dvipsnames]{xcolor}
+\usepackage[square,numbers,sort&compress]{natbib}
+
+% Пакеты без параметров
+\usepackage {
+    lipsum,
+	caption,		% Для изменения заголовков
+	listings,		% Для оформления исходного кода
+	float,			% Для изменения расположения рисунков и таблиц
+	multirow,		% Для таблиц
+	tabularx,
+	caption,		% Для изменения заголовков
+	subcaption,
+	chngcntr,		% Для сквозной нумерации
+	amsmath,		% Для длинных формул
+	mathtext,	
+	amsfonts,
+	mathtools,
+	array,			% Для таблиц и формул
+	amssymb,		% Для математических символов
+	enumerate,		% Для списков
+	enumitem,
+	pgfplots,		% Для графиков
+	pgfplotstable,
+	pdfpages,		% Для добавления pdf файлов 
+	lastpage,		% Для подсчета количества страниц
+	indentfirst,	% Для отступов в первом параграфе
+	cmap			% Копирование и поиск текста на русском в PDF
+}
+
+\pgfplotsset{compat=1.3}
+
+\usepackage{totcount}
+\regtotcounter{chapter}
+\regtotcounter{figure}
+\usepackage[figure,table]{totalcount}
+
+% Убрать разделение между пунктами списка и отступы до и после
+%\setlist{itemsep=14pt, topsep=14pt}
+
+% Для автоматического создания ссылок в тексте  и оглавлении
+\usepackage[unicode=true,
+			linktocpage=true,
+			plainpages=false,
+			pdfauthor={N. Kondratyev},
+			pdfpagelabels=false]{hyperref}
+
+% Отступ у первого абзаца
+\usepackage[indentfirst]{titlesec}
+
+% Полуторный междустрочный интервал
+\linespread{1.5}
+
+% Поля страницы
+\usepackage[left=3cm,top=2cm,right=1cm,bottom=2cm]{geometry}
+
+% Избавляемся от переполнений
+\sloppy
+
+% Запрещаем разрыв страницы после первой строки абзаца
+\clubpenalty = 10000
+
+% Запрещаем разрыв страницы после последней строки абзаца
+\widowpenalty = 10000
+
+% Отступ для абзаца
+\setlength{\parindent}{1cm}
+
+% Параметры названия для иллюстраций (Рисунок 1 - <название>)
+\DeclareCaptionLabelFormat{PictureCaptionFormat}{Рисунок {#2}}
+\captionsetup[figure] {
+	labelformat=PictureCaptionFormat,
+	skip=0pt,
+	format=hang,
+	justification=raggedright,
+	labelsep=endash
+}
+
+% Параметры названия для таблиц (Таблица 1 - <название>)
+\DeclareCaptionLabelFormat{TableCaptionFormat}{Таблица {#2}}
+\captionsetup[table] {
+	labelformat=TableCaptionFormat,
+	skip=0pt,
+	format=hang,
+	justification=raggedright,
+	singlelinecheck=off,
+	labelsep=endash
+}
+
+% Все рисунки и таблицы будут располагаться в том месте, в котором из вставили в коде
+\floatplacement{figure}{H}
+\floatplacement{table}{H}
+
+% Заголовок для листинга (Листинг 1 - <название>)
+\DeclareCaptionLabelFormat{ListingCaptionFormat}{Листинг {#2}}
+\captionsetup[lstlisting] {
+	labelformat=ListingCaptionFormat,
+	skip=14pt,
+	format=hang,
+	justification=raggedright,
+	singlelinecheck=off,
+	labelsep=endash
+}
+
+% Оформление C/C++ кода
+\lstloadlanguages{C,C++}
+\lstdefinestyle{cpp-listing} {
+	belowcaptionskip=1\baselineskip,
+	breaklines=true,									% Перенос строк
+	numbers=left,										% Нумерация строк
+	numbersep=5pt,
+	showstringspaces=false,
+	basicstyle=\linespread{1}\ttfamily\footnotesize,	% Шрифт
+	keywordstyle=\bfseries\color{blue},					% Ключевые слова синим
+	morekeywords={										% Дополнительные кючевые слова
+	},			
+	commentstyle=\itshape\color{LimeGreen},				% Комментарии зеленым
+	keepspaces = true,			
+	stringstyle=\color{purple},							% Строки сиреневым
+	frame=tb,											% Рамка сверху и снизу
+	extendedchars=true
+}
+
+\lstdefinestyle{cpp-inline} {
+	belowcaptionskip=1\baselineskip,
+	breaklines=true,									% Перенос строк
+	numbers=left,										% Нумерация строк
+	numbersep=5pt,
+	showstringspaces=false,
+	basicstyle=\ttfamily,								% Шрифт
+	keywordstyle=\bfseries\color{blue},					% Ключевые слова синим
+	morekeywords={										% Дополнительные кючевые слова
+	},			
+	commentstyle=\itshape\color{LimeGreen},				% Комментарии зеленым
+	keepspaces = true,			
+	stringstyle=\color{purple},							% Строки сиреневым
+	extendedchars=true
+}
+
+\newcommand{\inlinecode} {
+	\lstinline[language=C++, style=cpp-inline]
+}
+
+% Круглые скобки
+\newcommand{\parens}[1]{\left ({#1} \right )}
+
+% Квадратные скобки
+\newcommand{\brackets}[1]{\left [{#1} \right ]}
+
+% Фигурные скобки
+\newcommand{\braces}[1]{ \left\{ {#1} \right\} }
+
+% Норма || arg ||
+\newcommand{\norm}[1]{ \|{#1}\| }
+
+% 
+\newcommand{\boldvec}[1]{\vec{ \mathbf{#1} }}
+
+% Полуторный междустрочный интервал для таблиц
+%\renewcommand{\arraystretch}{1.5}
+
+% нумерация источников в самом списке — через точку
+\renewcommand{\bibnumfmt}[1]{#1. }
+
+% заголовок специального раздела
+\renewcommand{\bibsection}{\chapter*{Список использованных источников}}
+%\setlength{\bibsep}{0pt}
+
+% Частная производная
+\newcommand\parderf[2]{\frac{\partial #1}{\partial #2}}
+
+\newcommand\parders[2]{\frac{\partial^2 #1}{\partial #2^2}}
+
+% Градиент
+\DeclareMathOperator{\gradient}{grad}
+
+% Дивергенция
+\DeclareMathOperator{\divergence}{div}
+
+% Ротор
+\DeclareMathOperator{\curl}{rot}
+
+% Пути к изображениям
+\graphicspath{{img/}}
+
+% Переопределения стилей заголовков
+\titleformat{\chapter}[block] {
+	\normalfont
+	\Large
+	\bfseries
+	%\hspace{1cm}
+}{\thechapter}{0em}{ }
+
+\titleformat{\section}[block]{
+	\normalfont
+	\large
+	\bfseries
+	%\hspace{1cm}
+}{\thesection}{0em}{ }
+
+\titleformat{\subsection}[block]{
+	\normalfont
+	\normalsize
+	\bfseries
+	%\hspace{1cm}
+}{\thesubsection}{0em}{ }
+
+% Изменение заголовка приложения
+\makeatletter
+\newcommand\appendix@chapter[1]{
+  \renewcommand{\thechapter}{\Asbuk{chapter}}
+  \refstepcounter{chapter}
+  \orig@chapter*{\appendixname~\thechapter.~#1}
+  \addcontentsline{toc}{chapter}{\appendixname~\thechapter.~#1}
+}
+\let\orig@chapter\chapter
+\g@addto@macro\appendix{\let\chapter\appendix@chapter}
+\makeatother
+
+
