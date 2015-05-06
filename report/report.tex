@@ -1,17 +1,35 @@
 
-\documentclass[a4paper,14pt]{extreport}
+\documentclass[a4paper]{report}
+
+% specify size
+\usepackage[14pt]{extsizes}
 
 \usepackage{style/report-ru}
 
+% images paths
+\graphicspath{
+      {img/}
+}
+
+% references
+\bibliography{references/articles, references/books}
+
+% text sizes:
+% \tiny
+% \scriptsize
+% \footnotesize
+% \small
+% \normalsize
+% \large
+% \Large
+% \LARGE
+% \huge
+% \Huge
+
 \begin{document}
 
-    \setlength\abovedisplayskip{\baselineskip}
-    \setlength\belowdisplayskip{\baselineskip}
-    \setlength\abovedisplayshortskip{\baselineskip}
-    \setlength\belowdisplayshortskip{\baselineskip}
-
 	% annotation
-	\input{content/annotation}
+	\input{content/abstract}
 
 	% table of contents
 	\tableofcontents
@@ -29,9 +47,11 @@
 	\input{content/conclusion}
 
     % references
-    \input{content/references}
+	\input{content/references}
 
-	% appendix
-	\input{content/appendix}
-
+    \appendix
+    
+    % source
+    \input{content/source-code}
+        
 \end{document}
