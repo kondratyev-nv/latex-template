@@ -1,5 +1,6 @@
 
 % cp1251 для листинга и utf8 для остального
+\usepackage[T2A,T1]{fontenc}
 \usepackage[cp1251,utf8]{inputenc}
 \usepackage[english,russian]{babel}
 
@@ -20,6 +21,7 @@
 % none  - Do not sort at all. All entries are processed in citation order.
 % debug - Sort by entry key. This is intended for debugging only.
 \usepackage[
+    backend     = biber,
     style       = gost-numeric, % стиль цитирования и библиографии
     language    = auto,         % получение языка из babel
     sorting     = none          % сортировка в порядке упоминания 
@@ -55,13 +57,43 @@
     lastpage,       % Для подсчета количества страниц
     indentfirst,    % Для отступов в первом параграфе
     fancyhdr,       % Для изменения колонтитулов
-    cmap            % Копирование и поиск текста на русском в PDF
+    titlesec,       % Отступ у первого абзаца
+    assoccnt,       % Для подсчета глав и приложений
+    csquotes
 }
 
-% Подсчитываем главы и рисунки
-\regtotcounter{chapter}
-\regtotcounter{figure}
+% Версия pgfplots
+\pgfplotsset{compat=newest}
 
+% Изменение формата оглавления
+\usepackage[titles]{tocloft}
+% Отточие в оглавлении для глав
+\renewcommand{\cftchapdotsep}{\cftdotsep}
+% Точка после номера главы/раздела в оглавлении
+\renewcommand{\cftchapaftersnum}{.}
+\renewcommand{\cftsecaftersnum}{.}
+
+% Подсчитываем главы и приложения
+\newcounter{chapters}
+\regtotcounter{chapters}
+
+\newcounter{appendices}
+\DeclareAssociatedCounters{chapter}{appendices}
+\regtotcounter{appendices}
+
+\preto\appendix{
+  % save the number of true chapters
+  \setcounter{chapters}{\value{chapter}}
+  
+  % reset the number of chapters
+  \setcounter{appendices}{0}
+}
+
+% Подсчитываем количество источников в списке литературы
+\newtotcounter{references}
+\AtEveryBibitem{\stepcounter{references}}
+
+% Подсчитываем таблицы и рисунки
 \usepackage[figure,table]{totalcount}
 
 % Для автоматического создания ссылок в тексте  и оглавлении
@@ -72,15 +104,12 @@
     pdfpagelabels   = false
 ]{hyperref}
 
-% Отступ у первого абзаца
-\usepackage{titlesec}
-
 % Полуторный междустрочный интервал
 \linespread{1.5}
 
 % Поля страницы
 \usepackage[
-    left    = 3.0cm,
+    left    = 2.5cm,
     top     = 2.0cm,
     right   = 1.0cm,
     bottom  = 2.0cm
@@ -208,22 +237,50 @@
 {\chapter*{\abstractname}}
 {                        }
 
-\allsectionsfont{\raggedright}
-
 % Номера страниц сверху
-% % Подчиняем первые страницы каждой главы общим правилам
-% \makeatletter
-% \let\ps@plain\ps@fancy
-% \makeatother
+% Подчиняем первые страницы каждой главы общим правилам
+\makeatletter
+\let\ps@plain\ps@fancy
+\makeatother
 
-% % Меняем стиль оформления страниц
-% \pagestyle{fancy}
-% % Очищаем текущие значения
-% \fancyhf{}
-% % Печатаем номер страницы на середине верхнего поля
-% \fancyhead[C]{\normalsize\thepage}
-% % Убираем разделительную линию
-% \renewcommand{\headrulewidth}{0pt}
-% 
-% \allsectionsfont{\centering}
+% Меняем стиль оформления страниц
+\pagestyle{fancy}
+% Очищаем текущие значения
+\fancyhf{}
+% Печатаем номер страницы на середине верхнего поля
+\fancyhead[C]{\normalsize\thepage}
+% Убираем разделительную линию
+\renewcommand{\headrulewidth}{0pt}
 
+% Переопределения стилей заголовков
+\titleformat{\chapter}[block] {
+    \centering
+    \normalfont
+    \Large
+    \bfseries
+}{\thechapter. }{0em}{}
+\titlespacing\chapter{0pt}{0pt}{2\baselineskip}[0pt]
+
+\titleformat{\section}[block]{
+    \normalfont
+    \large
+    \bfseries
+}{\thesection. }{0em}{}
+
+\titleformat{\subsection}[block]{
+    \normalfont
+    \normalsize
+    \bfseries
+}{\thesubsection. }{0em}{}
+
+% Изменение заголовка приложения на Приложение А. Название
+\makeatletter
+\newcommand\appendix@chapter[1]{
+  \renewcommand{\thechapter}{\Asbuk{chapter}}
+  \refstepcounter{chapter}
+  \orig@chapter*{\appendixname~\thechapter.~#1}
+  \addcontentsline{toc}{chapter}{\appendixname~\thechapter.~#1}
+}
+\let\orig@chapter\chapter
+\g@addto@macro\appendix{\let\chapter\appendix@chapter}
+\makeatother
